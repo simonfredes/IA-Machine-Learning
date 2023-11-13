@@ -25,4 +25,14 @@ df_futbol['Manager'].fillna('Other', inplace=True)
 #delete the column 'Passes'
 df_futbol.drop('Passes', axis=1, inplace=True)
 
-#replace in column
+#for each Team in 'Teams' apply ordinal encoding to the column 'Team'
+from sklearn.preprocessing import OrdinalEncoder
+
+# Create an instance of the OrdinalEncoder
+encoder = OrdinalEncoder()
+
+# Apply ordinal encoding to the 'Team' column
+df_futbol['Team'] = encoder.fit_transform(df_futbol[['Team']])
+
+#complete the NaN values in column 'Field_zone' with 'middle'
+df_futbol['Field_zone'].fillna('middle', inplace=True)
